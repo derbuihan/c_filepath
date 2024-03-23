@@ -2,21 +2,14 @@
 
 #include "filepath.h"
 
-void printFilePathNode(struct FilePathNode *node) {
-  while (node != NULL) {
-    printf("name: %s\n", node->name);
-    node = node->next;
-  }
-}
-
 int main() {
-  char *test_filepath = "/home/user/file.txt";
-  struct FilePathNode *filePathNode = parseFilePath(test_filepath);
-
-  printf("test_filepath: %s\n", test_filepath);
-  printFilePathNode(filePathNode);
-
-  freeFilePathNode(filePathNode);
+  struct FilePathNode *path = parseFilePath("/home/user/file.txt");
+  struct FilePathNode *cur = path;
+  while (cur != NULL) {
+    printf("%s\n", cur->name);
+    cur = cur->next;
+  }
+  freeFilePathNode(path);
 
   return 0;
 }
